@@ -174,6 +174,34 @@ void printsnln(char* label, uint32_t val) {
 #endif
 }
 
+void printlnfloat(float number) {
+	#if ENABLE_TEXT_OUTPUT
+		char buffer[12];
+		intToString((int32_t)roundf(number * 100), buffer, 3);
+		int32_t length = strlen(buffer);
+		char temp = buffer[length - 2];
+		buffer[length - 2] = 0;
+		uartPrint(buffer);
+		uartPrint(".");
+		buffer[length - 2] = temp;
+		Debug::println(&buffer[length - 2]);
+	#endif
+	}
+}
+void printfloat(float number) {
+#if ENABLE_TEXT_OUTPUT
+	char buffer[12];
+	intToString((int32_t)roundf(number * 100), buffer, 3);
+	int32_t length = strlen(buffer);
+	char temp = buffer[length - 2];
+	buffer[length - 2] = 0;
+	uartPrint(buffer);
+	uartPrint(".");
+	buffer[length - 2] = temp;
+	Debug::print(&buffer[length - 2]);
+#endif
+}
+
 RTimer::RTimer(const char* label) : startTime(0), m_label(label), stopped(false) {
 #if ENABLE_TEXT_OUTPUT
 
