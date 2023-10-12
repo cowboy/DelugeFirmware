@@ -185,9 +185,10 @@ void printlnfloat(float number) {
 		uartPrint(".");
 		buffer[length - 2] = temp;
 		Debug::println(&buffer[length - 2]);
-	#endif
+#endif
 	}
-}
+
+
 void printfloat(float number) {
 #if ENABLE_TEXT_OUTPUT
 	char buffer[12];
